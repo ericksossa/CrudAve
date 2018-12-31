@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+        <form class="card card-sm">
+            <div class="card-body row no-gutters align-items-center">
+
+                <!--end of col-->
+                <div class="col">
+
+                    <h4 class="text-center">Buscar por zona ...</h4>
+                    <mat-form-field class="example-full-width">
+                        <mat-select (selectionChange)="obtenerAves( $event.value )" name="zona" placeholder="Zona">
+                            <mat-option>Ninguna</mat-option>
+                            <mat-option *ngFor="let zona of zonas" [value]="zona.cdzona">{{zona.dsnombre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--end of col-->
+</div>
+<div class="card  bg-light  m-5 mb-3 animated fadeIn fast">
+    <div class="card-header">Aves</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">Listado de Aves</h5>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>CODIGO</th>
+                    <th>NOMBRE COMÚN</th>
+                    <th>NOMBRE CIENTIFICO</th>
+                    <th>OPCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ave of aves | paginate: {itemsPerPage: 7, currentPage: p}">
+                    <td>{{ ave.cdave }}</td>
+                    <td>{{ ave.dsnombreComun }}</td>
+                    <td>{{ ave.dsnombreCientifico }}</td>
+                    <td>
+
+                        <button [routerLink]="['/nuevaAve',ave.cdave]" type="button" name="button" class="btn btn-outline-warning">
+              Editar
+            </button>
+                        <button (click)="delete(ave)" type="button" name="button" class="btn btn-outline-danger">
+              Borrar
+            </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

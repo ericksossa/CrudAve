@@ -1,0 +1,33 @@
+<div class="container m-5 col-md-11">
+  <form (ngSubmit)="guardar()" #forma="ngForm" class="form-center">
+    <h1 class="text-center mb-3">Registro de Aves</h1>
+
+    <mat-form-field class="example-full-width">
+      <input [(ngModel)]="ave.cdave" name="cdave" matInput placeholder="Codigo del ave" required>
+    </mat-form-field>
+
+    <br><br>
+
+    <mat-form-field class="example-full-width">
+      <input [(ngModel)]="ave.dsnombreComun" name="dsnombreComun" matInput placeholder="Nombre Comun" required>
+    </mat-form-field>
+
+    <br><br>
+
+    <mat-form-field class="example-full-width " cellspacing="0">
+      <input [(ngModel)]="ave.dsnombreCientifico" name="dsnombreCientifico" matInput placeholder="Nombre Cientifico"
+        required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Seleccione una zona">
+        <mat-option *ngFor="let zona of zonas" [value]="zona.cdzona">
+          {{zona.dsnombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="form-group ">
+      <button [disabled]="!forma.valid" type="button " class="btn btn-outline-success btn-block ">Guardar</button>
+    </div>
+  </form>
+</div>

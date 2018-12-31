@@ -1,0 +1,41 @@
+<div class="card  bg-light  m-5 mb-3 animated fadeIn fast">
+  <div class="card-header">Aves</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Listado de Aves</h5>
+
+    <div class="row animated fadeIn fast" *ngIf="aves.length === 0">
+      <div class="col-md-12">
+        <div class="alert alert-warning">
+          No existen resultados con ese término: {{termino}}
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>CODIGO</th>
+          <th>NOMBRE COMÚN</th>
+          <th>NOMBRE CIENTIFICO</th>
+          <th>OPCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ave of aves">
+          <td>{{ ave.cdave }}</td>
+          <td>{{ ave.dsnombreComun }}</td>
+          <td>{{ ave.dsnombreCientifico }}</td>
+          <td>
+            <button type="button" name="button" class="btn btn-outline-warning">
+              Editar
+            </button>
+            <button (click)="delete(ave)" type="button" name="button" class="btn btn-outline-danger">
+              Borrar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
